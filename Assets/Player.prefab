@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3936594959808040340}
   - component: {fileID: 1196737889332611949}
   - component: {fileID: 3761105448346486085}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,8 +116,7 @@ GameObject:
   - component: {fileID: 9063747850191296872}
   - component: {fileID: 7862839521238377439}
   - component: {fileID: 1700044119428487453}
-  - component: {fileID: 1139965568887401627}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,7 +167,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e129c1cc688b1a84ab27f0c8a7b2aacd, type: 2}
+  - {fileID: 2100000, guid: 1bbeedbc32eac6546ad1a19b38ae51ab, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -190,29 +189,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &1139965568887401627
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5658888247734610580}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6644375181585409511
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,9 +200,11 @@ GameObject:
   - component: {fileID: 4647504275732093554}
   - component: {fileID: 1719199916697248502}
   - component: {fileID: 1612223514218287437}
-  m_Layer: 0
+  - component: {fileID: 4223972284920389225}
+  - component: {fileID: 4415362196443450644}
+  m_Layer: 8
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -239,7 +217,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6644375181585409511}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.041018635, z: -0, w: 0.9991584}
+  m_LocalRotation: {x: 0, y: 0.041021157, z: 0, w: 0.9991583}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -273,6 +251,68 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c77f27d8b8b8d7844bb4a5f10ae7e9ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hp: 10
+  _hp: 3
   _shootForce: 1500
+  _delayBetweenShoots: 0.15
+  _invicibilityDuration: 5
+  _controller: {fileID: 1719199916697248502}
   _bullet: {fileID: 1186647514819593899, guid: 19998b85e22f75f44ac9d9a3851751f2, type: 3}
+  _renderer: {fileID: 1700044119428487453}
+  _normalColor: {r: 1, g: 1, b: 1, a: 1}
+  _hitColor: {r: 1, g: 0, b: 0, a: 1}
+  OnKilled:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHit:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!136 &4223972284920389225
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6644375181585409511}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &4415362196443450644
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6644375181585409511}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0

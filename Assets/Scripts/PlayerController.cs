@@ -9,6 +9,12 @@ public class PlayerController : MonoBehaviour
 
     private bool _allowMovement = true;
 
+    public bool AllowMovement
+    {
+        get { return _allowMovement; }
+        set { _allowMovement = value; }
+    }
+
     private void Update()
     {
         if (_allowMovement)
@@ -29,10 +35,15 @@ public class PlayerController : MonoBehaviour
     }
     private void UpdateRotation()
     {
-        // horizontal -> Y rotation
+        Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
 
-        float y = Input.GetAxis("Horizontal") * Time.deltaTime * _rotSpeed;
-
-        transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y + y, transform.rotation.z) ;
+        if (Physics.Raycast(camRay, out hit))
+        {
+            Vector3 playerToMouse = hit.point - transform.position;
+            playerToMouse.y = 0f;
+            Quaternion newRotation = Quaternion.LookRotation(playerToMouse);
+            transform.rotation = newRotation;
+        }
     }
 }
